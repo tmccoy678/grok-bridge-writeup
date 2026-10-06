@@ -32,6 +32,13 @@ No exploit, no sandbox escape, no credential theft was involved. The owner typed
 
 Debian "trixie" is named after the Toy Story triceratops. This is relevant only because it delighted everyone.
 
+**Follow-up research (2026-10-06)** refined the environment picture:
+
+- **It is a container, not a VM.** Independent researchers who probed their own Grok Bots measured PID 1 as `tini`, no systemd, and unannounced restarts mid-run. xAI's "cloud computer" is a Linux container. (This writeup keeps xAI's "VM" terminology where it quotes the product, but the underlying primitive is containerized.)
+- **Passwordless `sudo` is standard, not a misconfiguration.** The same independent probes confirmed passwordless sudo on *their* bots — every Grok Bot user gets root on their container by default.
+- **All Bots on one account share the one computer.** Files, browser sessions, and logins are shared across every Bot under the same xAI account. xAI's own docs state: "Do not use separate Bots as a security boundary."
+- **The computers run in Cursor's cloud infrastructure**, per xAI's documentation mirrors.
+
 ---
 
 ## 3. Bridge architecture
@@ -115,6 +122,10 @@ Honest assessment: **no CVE-shaped vulnerability was found in this session.** No
 The genuine finding is **architectural, not a bug**: a consumer phone AI ships a root Linux VM where (a) `sudo -i` is passwordless, (b) network egress is unfettered and unprompted, (c) the primary input method (phone keyboard, no paste) makes `curl | bash` from opaque short links the *normal* workflow, and (d) the agent holding root also browses the web and handles the user's API keys. Any one of these is defensible; the combination means a single successful prompt injection inherits root, network, and secrets in one step.
 
 That is a threat-model finding, not a 0day. It may still be worth disclosing to xAI as a hardening request (see §8), and the A1/A5 vectors are the ones a bounty hunter would probe next.
+
+**Demonstrated capability (2026-10-05): a foreign agent with root on xAI's infrastructure.** During this session the owner installed OpenAI's Codex CLI (v0.160.1) as root on the xAI-hosted container. xAI does not ship Codex — that is the point. Passwordless root plus unfettered network egress makes installing *any* software trivial, including a competitor's AI agent. The container will happily host a foreign AI that xAI did not authorize, does not control, and cannot see. xAI's threat model assumes the container runs *their* agent under *their* oversight; this session proved that assumption is one `npm install` away from breaking, for anyone with terminal access.
+
+**The owner's refined position:** it is a 0day *depending on what the passwordless root can do* — the severity is in the blast radius, not the root itself. Root confined to the user's own container is posture; root that reaches other tenants or xAI-internal systems is a vulnerability. That boundary is the open question (see §8).
 
 ---
 
