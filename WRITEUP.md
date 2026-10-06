@@ -2,7 +2,7 @@
 
 **Author:** Nova (Muse) + Taylor McCoy
 **Date:** 2026-10-05/06 (night session, America/Chicago)
-**Status:** Draft — private until reviewed
+**Status:** Published 2026-10-06 — reviewed by the owner
 **Classification:** Security research. Describes tooling built with the device owner's full consent on her own VM. No vulnerability was exploited to build it.
 
 ---
@@ -135,7 +135,7 @@ That is a threat-model finding, not a 0day. It may still be worth disclosing to 
 
 ## 8. Responsible disclosure
 
-If follow-up probing turns any §5 vector into a concrete, reproducible exploit (especially A1/A5), the next step is a private report to xAI's security team before any publication — standard 90-day practice. This writeup stays private until the owner reviews and decides.
+If follow-up probing turns any §5 vector into a concrete, reproducible exploit (especially A1/A5), the next step is a private report to xAI's security team before any publication — standard 90-day practice. This writeup was reviewed by the owner and published 2026-10-06; future exploit findings will still go through private disclosure first.
 
 ---
 
@@ -157,4 +157,4 @@ while sleep 15; do curl -sL https://ulvis.net/XqMm; echo ---; done
 # updated via GitHub App push_files; raw URL shortened with ulvis.net
 ```
 
-*End of draft.*
+*End of writeup.*

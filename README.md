@@ -51,4 +51,4 @@ Honest assessment: this is **not a 0day** — no sandbox escape (the VM is the s
 The bridge works, the writeup is honest about what it is and isn't, and the interesting question was never "can we connect the two agents" — it's "what does it mean that a phone AI holds root next to your secrets?" If follow-up probing turns any hypothesized vector into a concrete exploit, the next step is private disclosure to xAI before publication.
 
 ---
-*Draft — private until reviewed. Security research conducted with the device owner's full consent on her own hardware.*
+*Published 2026-10-06 after owner review. Security research conducted with the device owner's full consent on her own hardware.*
